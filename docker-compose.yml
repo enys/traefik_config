@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:v2.0
+    container_name: traefik
+    restart: unless-stopped
+    command: --log.level=DEBUG
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - traefik_network
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      #- /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/traefik.yml:ro
+      - ./configs:/configs:ro
+      - /opt/leadplace/data/traefik/letsencrypt:/letsencrypt/
+    labels:
+      - "traefik.docker.network=traefik_network"
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=http"
+      - "traefik.http.routers.traefik.rule=Host(`${TRAEFIK_HOST}`)"
+      - 'traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_BASICAUTH}'
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.traefik.middlewares=https-redirect@file"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.rule=Host(`${TRAEFIK_HOST}`)"
+      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=http-cr"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+
+networks:
+  traefik_network:
+    external: true
