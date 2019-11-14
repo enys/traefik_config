@@ -19,7 +19,7 @@ providers:
 certificatesResolvers:
   http-cr:
     acme:
-      email: admin@leadplace.fr
+      email: email@email.com
       storage: /letsencrypt/acme.json
       httpChallenge:
         entryPoint: http
