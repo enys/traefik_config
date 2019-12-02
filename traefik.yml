@@ -8,6 +8,9 @@ entryPoints:
     address: ":80"
   https:
     address: ":443"
+  metrics:
+    address: ":9101"
+
 accessLog: {}
 
 providers:
@@ -26,4 +29,8 @@ certificatesResolvers:
       storage: /letsencrypt/acme.json
       httpChallenge:
         entryPoint: http
+
+metrics:
+  prometheus:
+    entryPoint: metrics
 

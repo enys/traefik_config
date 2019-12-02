@@ -12,6 +12,7 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 9101:9101 #metrics
     volumes:
       #- /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
