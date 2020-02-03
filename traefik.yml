@@ -8,6 +8,11 @@ entryPoints:
     address: ":80"
   https:
     address: ":443"
+    transport:
+      respondingTimeouts:
+        #timeout in s
+        readTimeout: 1
+        writeTimeout: 1
   metrics:
     address: ":9101"
 
