@@ -10,6 +10,9 @@ After creating your .env, using .env.example::
 
   $ docker-compose up
 
+Basic Auth generation
+=====================
+htpasswd -nbB USER PWD
 
 TODO
 ====
