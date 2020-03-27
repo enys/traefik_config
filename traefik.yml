@@ -6,8 +6,16 @@ api:
 entryPoints:
   http:
     address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: https
+          scheme: https
   https:
     address: ":443"
+    http:
+      tls:
+        certResolver: tls-cr
     transport:
       respondingTimeouts:
         #timeout in s
@@ -28,6 +36,11 @@ providers:
 
 # http certificate resolver
 certificatesResolvers:
+  tls-cr:
+    acme:
+      email: email@email.com
+      storage: /letsencrypt/acme.json
+      tlsChallenge: {}
   http-cr:
     acme:
       email: email@email.com
