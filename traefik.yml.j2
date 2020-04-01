@@ -43,7 +43,7 @@ certificatesResolvers:
       tlsChallenge: {}
   http-cr:
     acme:
-      email: {{ le-email }}
+      email: {{ le_email }}
       storage: /letsencrypt/acme.json
       httpChallenge:
         entryPoint: http
