@@ -38,12 +38,12 @@ providers:
 certificatesResolvers:
   tls-cr:
     acme:
-      email: email@email.com
+      email: {{ le_email }}
       storage: /letsencrypt/acme.json
       tlsChallenge: {}
   http-cr:
     acme:
-      email: email@email.com
+      email: {{ le-email }}
       storage: /letsencrypt/acme.json
       httpChallenge:
         entryPoint: http
