@@ -240,3 +240,6 @@ com_crashlytics_export_strings.xml
 
 #log
 *.log
+#env files for docker-compose
+.env*
+!.env.example
