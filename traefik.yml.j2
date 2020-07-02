@@ -21,6 +21,16 @@ entryPoints:
         #timeout in s
         readTimeout: 60
         writeTimeout: 60
+  https_priv:
+    address: ":4443"
+    http:
+      tls:
+        certResolver: http-cr
+    transport:
+      respondingTimeouts:
+        #timeout in s
+        readTimeout: 60
+        writeTimeout: 60
   metrics:
     address: ":9101"
 
@@ -41,6 +51,15 @@ certificatesResolvers:
       email: {{ le_email }}
       storage: /letsencrypt/acme.json
       tlsChallenge: {}
+  gandi-cr:
+    acme:
+      email: {{ le_email }}
+      storage: /letsencrypt/acme.json
+      dnsChallenge:
+        provider: gandiv5
+        resolvers:
+          - "ns-216-a.gandi.net:53"
+          - "ns-131-b.gandi.net:53"
   http-cr:
     acme:
       email: {{ le_email }}
