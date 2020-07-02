@@ -11,8 +11,6 @@ services:
     networks:
       - traefik_network
     ports:
-      - "80:80"
-      - "443:443"
       - "9101:9101" #metrics
     volumes:
       #- /etc/localtime:/etc/localtime:ro
