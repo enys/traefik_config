@@ -16,6 +16,10 @@ entryPoints:
     http:
       tls:
         certResolver: tls-cr
+    forwardedHeaders:
+      trustedIPs: {{ traefik_trusted_ips }}
+    proxyProtocol:
+      trustedIPs: {{ traefik_trusted_ips }}
     transport:
       respondingTimeouts:
         #timeout in s
