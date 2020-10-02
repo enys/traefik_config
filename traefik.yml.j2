@@ -11,6 +11,10 @@ entryPoints:
         entryPoint:
           to: https
           scheme: https
+    forwardedHeaders:
+      trustedIPs: {{ traefik_trusted_ips }}
+    proxyProtocol:
+      trustedIPs: {{ traefik_trusted_ips }}
   https:
     address: ":443"
     http:
