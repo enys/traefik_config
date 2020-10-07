@@ -27,8 +27,8 @@ entryPoints:
     transport:
       respondingTimeouts:
         #timeout in s
-        readTimeout: 60
-        writeTimeout: 60
+        readTimeout: 300
+        writeTimeout: 300
   https_priv:
     address: ":4443"
     http:
@@ -37,8 +37,8 @@ entryPoints:
     transport:
       respondingTimeouts:
         #timeout in s
-        readTimeout: 60
-        writeTimeout: 60
+        readTimeout: 300
+        writeTimeout: 300
   metrics:
     address: ":9101"
 
