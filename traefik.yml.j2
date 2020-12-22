@@ -1,0 +1,81 @@
+log:
+  level: DEBUG
+api:
+  dashboard: true
+
+entryPoints:
+  http:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: https
+          scheme: https
+    forwardedHeaders:
+      trustedIPs: {{ traefik_trusted_ips }}
+    proxyProtocol:
+      trustedIPs: {{ traefik_trusted_ips }}
+  https:
+    address: ":443"
+    http:
+      tls:
+        certResolver: tls-cr
+    forwardedHeaders:
+      trustedIPs: {{ traefik_trusted_ips }}
+    proxyProtocol:
+      trustedIPs: {{ traefik_trusted_ips }}
+    transport:
+      respondingTimeouts:
+        #timeout in s
+        readTimeout: 300
+        writeTimeout: 300
+  https_priv:
+    address: ":4443"
+    http:
+      tls:
+        certResolver: gandi-cr
+    transport:
+      respondingTimeouts:
+        #timeout in s
+        readTimeout: 300
+        writeTimeout: 300
+  metrics:
+    address: ":9101"
+
+accessLog: {}
+
+providers:
+  file:
+   directory: "/configs/"
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+    watch: true
+
+# http certificate resolver
+certificatesResolvers:
+  tls-cr:
+    acme:
+      email: {{ le_email }}
+      storage: /letsencrypt/acme.json
+      tlsChallenge: {}
+  gandi-cr:
+    acme:
+      email: {{ le_email }}
+      storage: /letsencrypt/acme.json
+      dnsChallenge:
+        provider: gandiv5
+        resolvers:
+          - "ns-216-a.gandi.net:53"
+          - "ns-131-b.gandi.net:53"
+  http-cr:
+    acme:
+      email: {{ le_email }}
+      storage: /letsencrypt/acme.json
+      httpChallenge:
+        entryPoint: http
+
+metrics:
+  prometheus:
+    entryPoint: metrics
+

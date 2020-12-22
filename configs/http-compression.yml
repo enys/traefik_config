@@ -1,0 +1,6 @@
+---
+# Activate compression
+http:
+  middlewares:
+    compression:
+      compress: {}

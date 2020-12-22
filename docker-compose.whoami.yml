@@ -1,0 +1,20 @@
+---
+version: '3.7'
+
+services:
+  whoami:
+    image: containous/whoami
+    labels:
+      - "traefik.docker.network=traefik_network"
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami-secure.entrypoints=https"
+      - "traefik.http.routers.whoami-secure.rule=Host(`whoami.${TRAEFIK_HOST}`)"
+      - "traefik.http.routers.whoami-secure.middlewares=traefik-forward-oauth"
+      - "traefik.http.middlewares.traefik-forward-oauth.forwardauth.address=http://traefik-forward-auth:4181"
+      - "traefik.http.middlewares.traefik-forward-oauth.forwardauth.authResponseHeaders=X-Forwarded-User"
+    networks:
+      - traefik_network
+
+networks:
+  traefik_network:
+    external: true

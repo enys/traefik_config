@@ -1,0 +1,16 @@
+---
+version: '3.7'
+
+services:
+  traefik-forward-auth:
+    image: thomseddon/traefik-forward-auth:2
+    env_file: .env.oauth
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - traefik_network
+
+networks:
+  traefik_network:
+    external: true

@@ -1,0 +1,13 @@
+---
+version: '3.7'
+
+services:
+  traefik:
+    environment:
+      GANDIV5_API_KEY: ${GANDIV5_API_KEY}
+    ports:
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:443:443"
+      - "${LISTEN_PUB}:80:80"
+      - "${LISTEN_PUB}:443:443"
+      - "${LISTEN_VPC}:443:4443"
