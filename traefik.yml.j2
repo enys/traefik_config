@@ -59,6 +59,7 @@ certificatesResolvers:
       email: {{ le_email }}
       storage: /letsencrypt/acme.json
       tlsChallenge: {}
+      certificatesDuration: 2160 # default 90 days
   gandi-cr:
     acme:
       email: {{ le_email }}
