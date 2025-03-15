@@ -19,7 +19,9 @@ TODO
 
 Cert resolvers
 --------------
- Use dns challenge for ovh
+ Use dns challenge for ovh:
+ https://www.alexandre-hublau.com/fr/posts/it/generer-certificat-https-docker-traefik/
 
  Use wildcard dns :
  https://docs.traefik.io/https/acme/#wildcard-domains
+
