@@ -75,6 +75,13 @@ certificatesResolvers:
       storage: /letsencrypt/acme.json
       httpChallenge:
         entryPoint: http
+  scw-cr:
+    acme:
+      email: {{ le_email }}
+      storage: /letsencrypt/acme.json
+      dnsChallenge:
+        provider: scaleway
+
 
 metrics:
   prometheus:
