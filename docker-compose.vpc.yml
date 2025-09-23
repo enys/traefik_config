@@ -5,6 +5,7 @@ services:
   traefik:
     environment:
       GANDIV5_API_KEY: ${GANDIV5_API_KEY}
+      SCALEWAY_API_TOKEN: ${SCALEWAY_API_TOKEN}
     ports:
       - "127.0.0.1:80:80"
       - "127.0.0.1:443:443"
