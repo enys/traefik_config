@@ -1,5 +1,13 @@
 ---
 tls:
+  #  stores:
+  #    default:
+  #      defaultGeneratedCert:
+  #        resolver: ovh-cr
+  #        domain:
+  #          main: mini-bee.fleurda.org
+  #          sans:
+  #            - '*.mini-bee.fleurda.org'
   options:
     default:
       minVersion: VersionTLS12

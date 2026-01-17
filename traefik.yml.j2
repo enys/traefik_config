@@ -69,6 +69,12 @@ certificatesResolvers:
         resolvers:
           - "ns-216-a.gandi.net:53"
           - "ns-131-b.gandi.net:53"
+  ovh-cr:
+    acme:
+      email: {{ le_email }}
+      storage: /letsencrypt/acme.json
+      dnsChallenge:
+        provider: ovh
   http-cr:
     acme:
       email: {{ le_email }}

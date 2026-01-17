@@ -1,0 +1,11 @@
+---
+version: '3.7'
+
+services:
+  traefik:
+    environment:
+      OVH_APPLICATION_KEY: ${OVH_APPLICATION_KEY}
+      OVH_APPLICATION_SECRET: ${OVH_APPLICATION_SECRET}
+      OVH_CONSUMER_KEY: ${OVH_CONSUMER_KEY}
+      OVH_ENDPOINT: ${OVH_ENDPOINT}
+
